@@ -1,7 +1,7 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/your-app-name
+    working_directory: ~/app
     docker:
       - image: circleci/ruby:3.1.2
         environment:
@@ -19,13 +19,13 @@ jobs:
 
       - type: cache-restore
         name: Restore bundle cache
-        key: your-app-name-{{ checksum "Gemfile.lock" }}
+        key: backend-{{ checksum "Gemfile.lock" }}
 
       - run: bundle install --path vendor/bundle
 
       - type: cache-save
         name: Store bundle cache
-        key: your-app-name-{{ checksum "Gemfile.lock" }}
+        key: backend-{{ checksum "Gemfile.lock" }}
         paths:
           - vendor/bundle
 
