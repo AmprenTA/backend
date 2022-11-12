@@ -145,6 +145,7 @@ GEM
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
     json (2.6.2)
+    jwt (2.5.0)
     listen (3.7.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -254,6 +255,8 @@ GEM
       unicode-display_width (>= 1.4.0, < 3.0)
     rubocop-ast (1.23.0)
       parser (>= 3.1.1.0)
+    rubocop-rspec (2.15.0)
+      rubocop (~> 1.33)
     ruby-progressbar (1.11.0)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
@@ -337,6 +340,7 @@ DEPENDENCIES
   grape-swagger
   grape-swagger-entity
   jbuilder (~> 2.7)
+  jwt
   listen (~> 3.3)
   net-smtp
   pg
@@ -345,6 +349,7 @@ DEPENDENCIES
   rails (~> 6.1.7)
   rspec-rails
   rubocop
+  rubocop-rspec
   sass-rails (>= 6)
   selenium-webdriver (>= 4.0.0.rc1)
   simplecov
