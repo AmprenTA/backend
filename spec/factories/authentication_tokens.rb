@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :authentication_token do
-    token { "MyString" }
-    user { nil }
-    expires_at { "2022-11-04 10:02:04" }
+    token { Faker::Crypto.sha256 }
+    user
+    expires_at { 10.hours.from_now }
   end
 end
