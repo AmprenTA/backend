@@ -14,8 +14,13 @@ class RootApi < Grape::API
     }.to_json, 400)
   end
 
-  mount Login
-  mount Register
+  mount TransportationsApi
+  mount UsersApi
+  mount FlightsApi
+  mount CarsApi
+  mount PublicTransportsApi
+  mount HousesApi
+  mount FoodsApi
 
   add_swagger_documentation(
     format: :json,
