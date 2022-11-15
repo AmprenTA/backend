@@ -23,12 +23,14 @@ class CarsApi < Grape::API
     end
     params do
       requires :fuel_type, type: Integer, desc: 'fuel_type', documentation: { param_type: 'body' }
+      requires :fuel_consumption, type: Float, desc: 'fuel_consumption', documentation: { param_type: 'body' }
       requires :total_km, type: Float, desc: 'total_km', documentation: { param_type: 'body' }
-      optional :footprint_id, type: Integer, desc: 'footprint_id', documentation: { param_type: 'body' }
+      requires :footprint_id, type: Integer, desc: 'footprint_id', documentation: { param_type: 'body' }
     end
     post do
       car = Car.new(
         fuel_type: params[:fuel_type],
+        fuel_consumption: params[:fuel_consumption],
         total_km: params[:total_km],
         footprint_id: params[:footprint_id]
       )

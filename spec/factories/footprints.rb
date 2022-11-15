@@ -2,10 +2,6 @@
 
 FactoryBot.define do
   factory :footprint do
-    house
-    # food
-    flight
-    car
-    public_transport
+    user
   end
 end

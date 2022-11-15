@@ -8,52 +8,72 @@ class TransportationsApi < Grape::API
     desc 'Create transportation' do
       tags %w[transportation]
       http_codes [
-        { code: 201, model: Entities::Transport, message: 'Create transportation' }
+        { code: 201, message: 'Create transportation' },
+        { code: 400, message: 'Bad request!' }
       ]
     end
     params do
-      requires :cars, type: Array do
+      requires :flights, type: Array[JSON] do
         requires :from, type: String, desc: 'from', documentation: { param_type: 'body' }
         requires :to, type: String, desc: 'to', documentation: { param_type: 'body' }
       end
-
-      requires :public_transports, type: Array do
+      requires :public_transports, type: Array[JSON] do
         requires :transport_type, type: Integer, desc: 'transport_type', documentation: { param_type: 'body' }
-        requires :km, type: Float, desc: 'km', documentation: { param_type: 'body' }
+        requires :total_km, type: Float, desc: 'km', documentation: { param_type: 'body' }
       end
-
-      requires :flights, type: Array do
+      requires :cars, type: Array[JSON] do
         requires :fuel_type, type: Integer, desc: 'fuel_type', documentation: { param_type: 'body' }
+        requires :fuel_consumption, type: Float, desc: 'fuel_consumption', documentation: { param_type: 'body' }
         requires :total_km, type: Float, desc: 'total_km', documentation: { param_type: 'body' }
       end
-
-      optional :footprint_id, type: Integer, desc: 'footprint_id', documentation: { param_type: 'body' }
+      requires :footprint_id, type: Integer, desc: 'footprint_id', documentation: { param_type: 'body' }
     end
     post do
-      car = Car.new(
-        fuel_type: params[:fuel_type],
-        total_km: params[:total_km],
-        footprint_id: params[:footprint_id]
-      )
-      flight = Flight.new(
-        from: params[:from],
-        to: params[:to],
-        footprint_id: params[:footprint_id]
-      )
-      public_transport = PublicTransport.new(
-        transport_type: params[:transport_type],
-        total_km: params[:km],
-        footprint_id: params[:footprint_id]
-      )
-      error!(car.errors, 400) unless car.present? && car.save
-      error!(flight.errors, 400) unless flight.present? && flight.save
-      error!(public_transport.errors, 400) unless public_transport.present? && public_transport.save
-      transport = {
-        car:,
-        flight:,
-        public_transport:
+      cars_params = params[:cars]
+      flights_params = params[:flights]
+      public_transports_params = params[:public_transports]
+      footprint_id = params[:footprint_id]
+      # TODO: Call CO2 calculator on each object creation
+
+      flights_params.each do |flight_param|
+        flight = Flight.new(
+          from: flight_param[:from],
+          to: flight_param[:to],
+          footprint_id:,
+          carbon_footprint: 0.0
+        )
+        error!(flight.errors, 400) unless flight.present? && flight.save
+      end
+
+      cars_params.each do |car_param|
+        car = Car.new(
+          fuel_type: car_param[:fuel_type],
+          fuel_consumption: car_param[:fuel_consumption],
+          total_km: car_param[:total_km],
+          footprint_id:,
+          carbon_footprint: 0.0
+        )
+        error!(car.errors, 400) unless car.present? && car.save
+      end
+
+      public_transports_params.each do |public_transport_param|
+        public_transport = PublicTransport.new(
+          transport_type: public_transport_param[:transport_type],
+          total_km: public_transport_param[:total_km],
+          footprint_id:,
+          carbon_footprint: 0.0
+        )
+        error!(public_transport.errors, 400) unless public_transport.present? && public_transport.save
+      end
+
+      # TODO: Extract service to calculate the CO2 footprint for each object
+      transports = {
+        cars: 'Carbon footprint for cars',
+        flights: 'Carbon footprint for flights',
+        public_transports: 'Carbon footprint for public transports'
       }
-      present transport, with: Entities::Transport
+
+      present transports
     end
   end
 end

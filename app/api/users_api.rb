@@ -66,7 +66,8 @@ class UsersApi < Grape::API
       desc 'User Sign In' do
         tags %w[users]
         http_codes [
-          { code: 201, model: Entities::User, message: 'User logged in!' }
+          { code: 201, model: Entities::User, message: 'User logged in!' },
+          { code: 401, model: Entities::User, message: 'Forbidden!' }
         ]
       end
       params do

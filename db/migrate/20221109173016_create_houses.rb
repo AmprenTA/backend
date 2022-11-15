@@ -4,6 +4,7 @@ class CreateHouses < ActiveRecord::Migration[6.1]
       t.float :electricity, null: false
       t.float :natural_gas, null: false
       t.float :wood, null: false
+      t.float :carbon_footprint, null: false
       t.references :footprint, foreign_key: true
 
       t.timestamps

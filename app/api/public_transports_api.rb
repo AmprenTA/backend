@@ -28,7 +28,7 @@ class PublicTransportsApi < Grape::API
     params do
       requires :transport_type, type: Integer, desc: 'transport_type', documentation: { param_type: 'body' }
       requires :total_km, type: Float, desc: 'total_km', documentation: { param_type: 'body' }
-      optional :footprint_id, type: Integer, desc: 'footprint_id', documentation: { param_type: 'body' }
+      requires :footprint_id, type: Integer, desc: 'footprint_id', documentation: { param_type: 'body' }
     end
     post do
       public_transport = PublicTransport.new(

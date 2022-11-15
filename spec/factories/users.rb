@@ -6,6 +6,5 @@ FactoryBot.define do
     first_name { Faker::Name.first_name }
     last_name { Faker::Name.first_name }
     password { Faker::Internet.password }
-    location { Faker::Address.city }
   end
 end

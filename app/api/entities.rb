@@ -5,25 +5,28 @@ class Entities
     expose :email
     expose :first_name
     expose :last_name
-
   end
 
   class Flight < Grape::Entity
     expose :from
     expose :to
     expose :footprint_id
+    expose :carbon_footprint
   end
 
   class Car < Grape::Entity
     expose :total_km
     expose :fuel_type
+    expose :fuel_consumption
     expose :footprint_id
+    expose :carbon_footprint
   end
 
   class PublicTransport < Grape::Entity
     expose :transport_type
     expose :total_km
     expose :footprint_id
+    expose :carbon_footprint
   end
 
   class House < Grape::Entity
@@ -31,12 +34,6 @@ class Entities
     expose :natural_gas
     expose :wood
     expose :footprint_id
-  end
-
-  class Transport < Grape::Entity
-    expose :car, using: Car
-    expose :flight, using: Flight
-    expose :public_transport, using: PublicTransport
   end
 
   class Food < Grape::Entity
