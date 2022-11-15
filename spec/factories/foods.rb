@@ -2,8 +2,8 @@
 
 FactoryBot.define do
   factory :food do
-    min_carbon_footprint { Faker::Number.between(from: 0.0, to: 10000.0).round(1) }
-    max_carbon_footprint { Faker::Number.between(from: 0.0, to: 10000.0).round(1) }
+    min_carbon_footprint { Faker::Number.between(from: 0.0, to: 10_000.0).round(1) }
+    max_carbon_footprint { Faker::Number.between(from: 0.0, to: 10_000.0).round(1) }
 
     association :footprint
   end

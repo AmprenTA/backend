@@ -6,8 +6,7 @@ module AuthorizationHelper
     begin
       decode_data = JWT.decode(token, key, true, { algorithm: 'HS256' })
       user_data = decode_data[0].values.first if decode_data
-      user = User.find(user_data)
-      error!({ error: 'Unauthorized!' }, 401) unless user
+      User.find(user_data)
     rescue StandardError => e
       error!({ error: "Unauthorized! #{e}" }, 401)
     end

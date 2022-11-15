@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'uri'
 require 'net/http'
 require 'openssl'
@@ -19,7 +20,7 @@ task :seed_iata_codes do
                    .each { |n| n.select! { |k, _| k if %w[State Longitude Latitude].exclude?(k) } }
   file = Rails.root.join('lib/IATA_codes.csv')
   headers = 'IATACode,Country,Name'
-  CSV.open(file, "w", headers: headers, write_headers: true) do |csv|
+  CSV.open(file, 'w', headers:, write_headers: true) do |csv|
     iata_codes.each do |row|
       csv << row
     end

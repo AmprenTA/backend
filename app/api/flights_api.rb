@@ -33,7 +33,6 @@ class FlightsApi < Grape::API
       end
     end
     post do
-      debugger
       flights = params[:flights]
       flights.each do |flight_param|
         flight = Flight.new(

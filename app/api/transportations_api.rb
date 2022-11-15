@@ -3,6 +3,8 @@
 class TransportationsApi < Grape::API
   format :json
 
+  helpers AuthorizationHelper, CarbonFootprintHelper
+
   namespace 'transportation' do
     # POST /transportations
     desc 'Create transportation' do
@@ -12,65 +14,85 @@ class TransportationsApi < Grape::API
         { code: 400, message: 'Bad request!' }
       ]
     end
+    desc 'Headers', {
+      headers: {
+        'Auth-Token' => {
+          description: 'Validates your identity',
+          optional: true
+        }
+      }
+    }
+
     params do
-      requires :flights, type: Array[JSON] do
+      optional :flights, type: Array[JSON] do
         requires :from, type: String, desc: 'from', documentation: { param_type: 'body' }
         requires :to, type: String, desc: 'to', documentation: { param_type: 'body' }
       end
-      requires :public_transports, type: Array[JSON] do
+      optional :public_transports, type: Array[JSON] do
         requires :transport_type, type: Integer, desc: 'transport_type', documentation: { param_type: 'body' }
         requires :total_km, type: Float, desc: 'km', documentation: { param_type: 'body' }
       end
-      requires :cars, type: Array[JSON] do
+      optional :cars, type: Array[JSON] do
         requires :fuel_type, type: Integer, desc: 'fuel_type', documentation: { param_type: 'body' }
         requires :fuel_consumption, type: Float, desc: 'fuel_consumption', documentation: { param_type: 'body' }
         requires :total_km, type: Float, desc: 'total_km', documentation: { param_type: 'body' }
       end
-      requires :footprint_id, type: Integer, desc: 'footprint_id', documentation: { param_type: 'body' }
     end
     post do
       cars_params = params[:cars]
       flights_params = params[:flights]
       public_transports_params = params[:public_transports]
-      footprint_id = params[:footprint_id]
-      # TODO: Call CO2 calculator on each object creation
+      token = headers.fetch('Auth-Token', nil)
+      if token
+        user = authorize_user(token)
+        footprint = Footprint.new(user_id: user.id)
+      else
+        footprint = Footprint.new
+      end
+      error!(footprint.errors, 400) unless footprint.present? && footprint.save
 
-      flights_params.each do |flight_param|
+      # TODO: API CALL TO FIND THE FLIGHT DISTANCE BETWEEN AIRPORTS
+      flights_params&.each do |flight_param|
         flight = Flight.new(
           from: flight_param[:from],
           to: flight_param[:to],
-          footprint_id:,
+          footprint_id: footprint.id,
           carbon_footprint: 0.0
         )
         error!(flight.errors, 400) unless flight.present? && flight.save
       end
 
-      cars_params.each do |car_param|
+      cars_params&.each do |car_param|
+        carbon_footprint = calculate_car_footprint(car_param[:total_km],
+                                                   car_param[:fuel_consumption],
+                                                   car_param[:fuel_type])
         car = Car.new(
           fuel_type: car_param[:fuel_type],
           fuel_consumption: car_param[:fuel_consumption],
           total_km: car_param[:total_km],
-          footprint_id:,
-          carbon_footprint: 0.0
+          footprint_id: footprint.id,
+          carbon_footprint:
         )
         error!(car.errors, 400) unless car.present? && car.save
       end
 
-      public_transports_params.each do |public_transport_param|
+      public_transports_params&.each do |public_transport_param|
+        carbon_footprint = calculate_pub_trans_footprint(public_transport_param[:total_km],
+                                                         public_transport_param[:transport_type])
         public_transport = PublicTransport.new(
           transport_type: public_transport_param[:transport_type],
           total_km: public_transport_param[:total_km],
-          footprint_id:,
-          carbon_footprint: 0.0
+          footprint_id: footprint.id,
+          carbon_footprint:
         )
         error!(public_transport.errors, 400) unless public_transport.present? && public_transport.save
       end
 
-      # TODO: Extract service to calculate the CO2 footprint for each object
       transports = {
-        cars: 'Carbon footprint for cars',
-        flights: 'Carbon footprint for flights',
-        public_transports: 'Carbon footprint for public transports'
+        cars: footprint.cars.map(&:carbon_footprint).sum,
+        flights: footprint.flights.map(&:carbon_footprint).sum,
+        public_transports: footprint.public_transports.map(&:carbon_footprint).sum,
+        footprint_id: footprint.id
       }
 
       present transports
