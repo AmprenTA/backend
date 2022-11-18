@@ -2,17 +2,6 @@
 
 class UsersApi < Grape::API
   resource :users do
-    # GET /users
-    desc 'Users list' do
-      tags %w[users]
-      http_codes [
-        { code: 200, model: Entities::User, message: 'User list' }
-      ]
-    end
-    get do
-      users = User.all
-      present users, with: Entities::User
-    end
 
     # GET /users/:id
     route_param :id do

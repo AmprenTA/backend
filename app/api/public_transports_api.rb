@@ -1,23 +1,7 @@
 # frozen_string_literal: true
 
 class PublicTransportsApi < Grape::API
-  before do
-    :authentication
-  end
-
   resource :public_transports do
-    # GET /public_transports
-    desc 'Public transports list' do
-      tags %w[public_transports]
-      http_codes [
-        { code: 200, model: Entities::PublicTransport, message: 'Public transport list' }
-      ]
-    end
-    get do
-      public_transports = PublicTransport.all
-      present public_transports, with: Entities::PublicTransport
-    end
-
     # POST /public_transports
     desc 'Create public transport' do
       tags %w[public_transports]
@@ -38,23 +22,6 @@ class PublicTransportsApi < Grape::API
       )
       error!(public_transport.errors, 400) unless public_transport.present? && public_transport.save
       present public_transport, with: Entities::PublicTransport
-    end
-
-    # GET /public_transports/:id
-    route_param :id do
-      desc 'Get public transport' do
-        tags %w[public_transports]
-        http_codes [
-          { code: 200, model: Entities::PublicTransport, message: 'Public transport info' },
-          { code: 404, message: 'Public transports not found!' }
-        ]
-      end
-      params do
-        requires :id, type: Integer
-      end
-      get do
-        present PublicTransport.find(params[:id]), with: Entities::PublicTransport
-      end
     end
   end
 end

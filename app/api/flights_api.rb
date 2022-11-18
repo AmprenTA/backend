@@ -2,20 +2,7 @@
 
 class FlightsApi < Grape::API
   format :json
-
   resource :flights do
-    # GET /flights
-    desc 'Flights list' do
-      tags %w[flights]
-      http_codes [
-        { code: 200, model: Entities::Flight, message: 'Flight list' }
-      ]
-    end
-    get do
-      flights = Flight.all
-      present flights, with: Entities::Flight
-    end
-
     # POST /flights
     desc 'Create flight' do
       tags %w[flights]
@@ -43,23 +30,6 @@ class FlightsApi < Grape::API
         error!(flight.errors, 400) unless flight.present? && flight.save
       end
       present flights
-    end
-
-    # GET /flights/:id
-    route_param :id do
-      desc 'Get flight' do
-        tags %w[flights]
-        http_codes [
-          { code: 200, model: Entities::Flight, message: 'Flight info' },
-          { code: 404, message: 'Flight not found!' }
-        ]
-      end
-      params do
-        requires :id, type: Integer
-      end
-      get do
-        present Flight.find(params[:id])
-      end
     end
   end
 end

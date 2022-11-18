@@ -16,9 +16,9 @@ class RootApi < Grape::API
 
   mount TransportationsApi
   mount UsersApi
-  mount FlightsApi
-  mount CarsApi
-  mount PublicTransportsApi
+  # mount FlightsApi
+  # mount CarsApi
+  # mount PublicTransportsApi
   mount HousesApi
   mount FoodsApi
 

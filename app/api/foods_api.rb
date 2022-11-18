@@ -2,33 +2,21 @@
 
 class FoodsApi < Grape::API
   resource :foods do
-    # GET /foods
-    desc 'Food list' do
+    # POST /foods
+    desc 'Create foods' do
       tags %w[foods]
       http_codes [
-        { code: 200, model: Entities::Food, message: 'Food list' }
+        { code: 201, message: 'Create foods' },
+        { code: 400, message: 'Bad request!' }
       ]
     end
-    get do
-      foods = Food.all
-      present foods, with: Entities::Food
-    end
-
-    # GET /foods/:id
-    route_param :id do
-      desc 'Get food' do
-        tags %w[foods]
-        http_codes [
-          { code: 200, model: Entities::Food, message: 'Food info' },
-          { code: 404, message: 'Food not found!' }
-        ]
-      end
-      params do
-        requires :id, type: Integer
-      end
-      get do
-        present Food.find(params[:id]), with: Entities::Food
-      end
-    end
+    desc 'Headers', {
+      headers: {
+        'Auth-Token' => {
+          description: 'Validates your identity',
+          optional: true
+        }
+      }
+    }
   end
 end

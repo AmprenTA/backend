@@ -5,12 +5,12 @@ class TransportationsApi < Grape::API
 
   helpers AuthorizationHelper, CarbonFootprintHelper
 
-  namespace 'transportation' do
+  namespace 'transportations' do
     # POST /transportations
-    desc 'Create transportation' do
-      tags %w[transportation]
+    desc 'Create transportations' do
+      tags %w[transportations]
       http_codes [
-        { code: 201, message: 'Create transportation' },
+        { code: 201, message: 'Create transportations' },
         { code: 400, message: 'Bad request!' }
       ]
     end
@@ -51,7 +51,6 @@ class TransportationsApi < Grape::API
       end
       error!(footprint.errors, 400) unless footprint.present? && footprint.save
 
-      # TODO: API CALL TO FIND THE FLIGHT DISTANCE BETWEEN AIRPORTS
       flights_params&.each do |flight_param|
         flight = Flight.new(
           from: flight_param[:from],
@@ -89,9 +88,9 @@ class TransportationsApi < Grape::API
       end
 
       transports = {
-        cars: footprint.cars.map(&:carbon_footprint).sum,
-        flights: footprint.flights.map(&:carbon_footprint).sum,
-        public_transports: footprint.public_transports.map(&:carbon_footprint).sum,
+        'cars_carbon_footprint': footprint.cars.map(&:carbon_footprint).sum,
+        'flights_carbon_footprint': footprint.flights.map(&:carbon_footprint).sum,
+        'public_transports_carbon_footprint': footprint.public_transports.map(&:carbon_footprint).sum,
         footprint_id: footprint.id
       }
 

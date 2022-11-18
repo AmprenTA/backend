@@ -2,18 +2,6 @@
 
 class CarsApi < Grape::API
   resource :cars do
-    # GET /cars
-    desc 'Cars list' do
-      tags %w[cars]
-      http_codes [
-        { code: 200, model: Entities::Car, message: 'Car list' }
-      ]
-    end
-    get do
-      cars = Car.all
-      present cars, with: Entities::Car
-    end
-
     # POST /cars
     desc 'Create car' do
       tags %w[cars]
@@ -36,23 +24,6 @@ class CarsApi < Grape::API
       )
       error!(car.errors, 400) unless car.present? && car.save
       present car, with: Entities::Car
-    end
-
-    # GET /cars/:id
-    route_param :id do
-      desc 'Get car' do
-        tags %w[cars]
-        http_codes [
-          { code: 200, model: Entities::Car, message: 'Car info' },
-          { code: 404, message: 'Car not found!' }
-        ]
-      end
-      params do
-        requires :id, type: Integer
-      end
-      get do
-        present Car.find(params[:id]), with: Entities::Car
-      end
     end
   end
 end
