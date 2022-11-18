@@ -5,5 +5,4 @@ class Food < ApplicationRecord
 
   validates :min_carbon_footprint, presence: true
   validates :max_carbon_footprint, presence: true
-
 end

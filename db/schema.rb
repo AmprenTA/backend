@@ -38,8 +38,8 @@ ActiveRecord::Schema.define(version: 2022_11_09_173708) do
 
   create_table "foods", force: :cascade do |t|
     t.bigint "footprint_id"
-    t.float "min_carbon_footprint", null: false
-    t.float "max_carbon_footprint", null: false
+    t.float "min_carbon_footprint", default: 0.0, null: false
+    t.float "max_carbon_footprint", default: 0.0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["footprint_id"], name: "index_foods_on_footprint_id"
