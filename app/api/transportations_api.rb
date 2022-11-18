@@ -88,9 +88,9 @@ class TransportationsApi < Grape::API
       end
 
       transports = {
-        'cars_carbon_footprint': footprint.cars.map(&:carbon_footprint).sum,
-        'flights_carbon_footprint': footprint.flights.map(&:carbon_footprint).sum,
-        'public_transports_carbon_footprint': footprint.public_transports.map(&:carbon_footprint).sum,
+        cars_carbon_footprint: footprint.cars.map(&:carbon_footprint).sum,
+        flights_carbon_footprint: footprint.flights.map(&:carbon_footprint).sum,
+        public_transports_carbon_footprint: footprint.public_transports.map(&:carbon_footprint).sum,
         footprint_id: footprint.id
       }
 

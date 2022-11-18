@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class FoodFootprintCalculator
-
   def initialize(food)
     @food = food
   end

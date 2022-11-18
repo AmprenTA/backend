@@ -2,7 +2,6 @@
 
 class UsersApi < Grape::API
   resource :users do
-
     # GET /users/:id
     route_param :id do
       desc 'Get user' do
