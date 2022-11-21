@@ -14,7 +14,7 @@ class HousesApi < Grape::API
     end
     desc 'Headers', {
       headers: {
-        'Auth-Token' => {
+        'auth_token' => {
           description: 'Validates your identity',
           optional: true
         }
@@ -27,7 +27,7 @@ class HousesApi < Grape::API
       requires :footprint_id, type: Integer, desc: 'footprint_id', documentation: { param_type: 'body' }
     end
     post do
-      token = headers.fetch('Auth-Token', nil)
+      token = headers.fetch('auth_token', nil)
       authorize_user(token) if token
       carbon_footprint = HouseholdFootprintCalculator.new(params[:electricity],
                                                           params[:natural_gas],

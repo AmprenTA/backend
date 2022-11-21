@@ -19,7 +19,3 @@ http://127.0.0.1:3000
 ```sh
 http://127.0.0.1:3000/docs
 ```
-helpers AuthorizationHelper
-before do
-authorize_user(headers.fetch('Auth-Token', nil))
-end

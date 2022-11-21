@@ -14,7 +14,7 @@ class FoodsApi < Grape::API
     end
     desc 'Headers', {
       headers: {
-        'Auth-Token' => {
+        'auth_token' => {
           description: 'Validates your identity',
           optional: true
         }
@@ -36,7 +36,7 @@ class FoodsApi < Grape::API
     end
 
     post do
-      token = headers.fetch('Auth-Token', nil)
+      token = headers.fetch('auth_token', nil)
       authorize_user(token) if token
 
       min_max_carbon_footprint = FoodFootprintCalculator.call(params)

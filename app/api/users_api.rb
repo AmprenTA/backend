@@ -42,7 +42,7 @@ class UsersApi < Grape::API
         )
         if user.present? && user.valid_password?(params[:password]) && user.save
           token = JWT.encode({ user_data: user.id }, Rails.application.secret_key_base, 'HS256')
-          { 'auth-token': token }
+          { 'auth_token': token }
         else
           error!(user.errors, 400)
         end
@@ -69,7 +69,7 @@ class UsersApi < Grape::API
           error!({ 'error_msg' => error_msg }, 401)
         end
         token = JWT.encode({ user_data: user.id }, Rails.application.secret_key_base, 'HS256')
-        { 'auth-token': token }
+        { 'auth_token': token }
       end
     end
   end

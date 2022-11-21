@@ -16,7 +16,7 @@ class TransportationsApi < Grape::API
     end
     desc 'Headers', {
       headers: {
-        'Auth-Token' => {
+        'auth_token' => {
           description: 'Validates your identity',
           optional: true
         }
@@ -42,7 +42,7 @@ class TransportationsApi < Grape::API
       cars_params = params[:cars]
       flights_params = params[:flights]
       public_transports_params = params[:public_transports]
-      token = headers.fetch('Auth-Token', nil)
+      token = headers.fetch('auth_token', nil)
       if token
         user = authorize_user(token)
         footprint = Footprint.new(user_id: user.id)

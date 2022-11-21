@@ -15,7 +15,7 @@ class FootprintsApi < Grape::API
       end
       desc 'Headers', {
         headers: {
-          'Auth-Token' => {
+          'auth_token' => {
             description: 'Validates your identity',
             optional: true
           }
@@ -25,7 +25,7 @@ class FootprintsApi < Grape::API
         requires :id, type: Integer
       end
       get do
-        token = headers.fetch('Auth-Token', nil)
+        token = headers.fetch('auth_token', nil)
         authorize_user(token) if token
         cars_carbon_footprint = Footprint.find(params[:id]).cars.sum(&:carbon_footprint)
         public_transports_carbon_footprint = Footprint.find(params[:id]).public_transports.sum(&:carbon_footprint)
