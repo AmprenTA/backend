@@ -24,7 +24,7 @@ class HousesApi < Grape::API
       requires :electricity, type: Float, desc: 'electricity', documentation: { param_type: 'body' }
       requires :natural_gas, type: Float, desc: 'natural_gas', documentation: { param_type: 'body' }
       requires :wood, type: Float, desc: 'wood', documentation: { param_type: 'body' }
-      optional :footprint_id, type: Integer, desc: 'footprint_id', documentation: { param_type: 'body' }
+      requires :footprint_id, type: Integer, desc: 'footprint_id', documentation: { param_type: 'body' }
     end
     post do
       token = headers.fetch('Auth-Token', nil)
