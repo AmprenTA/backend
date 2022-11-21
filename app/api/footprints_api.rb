@@ -33,11 +33,11 @@ class FootprintsApi < Grape::API
         house_carbon_footprint = Footprint.find(params[:id]).house.carbon_footprint
         food_carbon_footprint = (Footprint.find(params[:id]).food.min_carbon_footprint +
                                  Footprint.find(params[:id]).food.max_carbon_footprint) / 2
-
+        transportation_carbon_footprint = cars_carbon_footprint +
+                                          flights_carbon_footprint +
+                                          public_transports_carbon_footprint
         total_carbon_footprint = {
-          cars_carbon_footprint:,
-          public_transports_carbon_footprint:,
-          flights_carbon_footprint:,
+          transportation_carbon_footprint:,
           house_carbon_footprint:,
           food_carbon_footprint:
         }
