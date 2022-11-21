@@ -2,7 +2,7 @@
 
 module AuthorizationHelper
   def authorize_user(token)
-    key = ENV.fetch('SECRET', nil)
+    key = Rails.application.secret_key_base
     begin
       decode_data = JWT.decode(token, key, true, { algorithm: 'HS256' })
       user_data = decode_data[0].values.first if decode_data
