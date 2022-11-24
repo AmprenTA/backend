@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_09_173708) do
+ActiveRecord::Schema.define(version: 2022_11_23_182002) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,10 +36,19 @@ ActiveRecord::Schema.define(version: 2022_11_09_173708) do
     t.index ["footprint_id"], name: "index_flights_on_footprint_id"
   end
 
+  create_table "flights_distances", force: :cascade do |t|
+    t.string "from", default: "", null: false
+    t.string "to", default: "", null: false
+    t.string "km", default: "", null: false
+    t.float "carbon_footprint", default: 0.0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "foods", force: :cascade do |t|
     t.bigint "footprint_id"
-    t.float "min_carbon_footprint", default: 0.0, null: false
-    t.float "max_carbon_footprint", default: 0.0, null: false
+    t.float "min_carbon_footprint", null: false
+    t.float "max_carbon_footprint", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["footprint_id"], name: "index_foods_on_footprint_id"
