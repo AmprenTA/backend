@@ -19,6 +19,7 @@ class RootApi < Grape::API
   mount UsersApi
   mount HousesApi
   mount FoodsApi
+  mount FlightsApi
 
   add_swagger_documentation(
     format: :json,

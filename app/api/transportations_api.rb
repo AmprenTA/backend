@@ -52,11 +52,16 @@ class TransportationsApi < Grape::API
       error!(footprint.errors, 400) unless footprint.present? && footprint.save
 
       flights_params&.each do |flight_param|
+        carbon_footprint = FlightsDistance.where(
+          from: [flight_param[:from], flight_param[:to]],
+          to: [flight_param[:from], flight_param[:to]]
+        ).first.carbon_footprint
+
         flight = Flight.new(
           from: flight_param[:from],
           to: flight_param[:to],
           footprint_id: footprint.id,
-          carbon_footprint: 0.0
+          carbon_footprint:
         )
         error!(flight.errors, 400) unless flight.present? && flight.save
       end
