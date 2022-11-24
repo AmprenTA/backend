@@ -2,6 +2,10 @@
 
 class HousesApi < Grape::API
   helpers AuthorizationHelper
+  before do
+    token = headers.fetch('auth_token', nil)
+    authorize_user(token) if token
+  end
 
   resource :houses do
     # POST /houses
@@ -21,14 +25,12 @@ class HousesApi < Grape::API
       }
     }
     params do
-      requires :electricity, type: Float, desc: 'electricity', documentation: { param_type: 'body' }
-      requires :natural_gas, type: Float, desc: 'natural_gas', documentation: { param_type: 'body' }
-      requires :wood, type: Float, desc: 'wood', documentation: { param_type: 'body' }
-      requires :footprint_id, type: Integer, desc: 'footprint_id', documentation: { param_type: 'body' }
+      requires :electricity, type: Float, desc: 'electricity', documentation: { param_type: 'body' }, default: 0.0
+      requires :natural_gas, type: Float, desc: 'natural_gas', documentation: { param_type: 'body' }, default: 0.0
+      requires :wood, type: Float, desc: 'wood', documentation: { param_type: 'body' }, default: 0.0
+      requires :footprint_id, type: Integer, desc: 'footprint_id', documentation: { param_type: 'body' }, default: 1
     end
     post do
-      token = headers.fetch('auth_token', nil)
-      authorize_user(token) if token
       carbon_footprint = HouseholdFootprintCalculator.new(params[:electricity],
                                                           params[:natural_gas],
                                                           params[:wood]).call
@@ -40,7 +42,7 @@ class HousesApi < Grape::API
         carbon_footprint:,
         footprint_id:
       )
-      error!(house.errors, 400) unless house.present? && house.save
+      error!(house.errors, 400) unless house&.save
       household_carbon_footprint = { carbon_footprint:, footprint_id: }
       present household_carbon_footprint
     end

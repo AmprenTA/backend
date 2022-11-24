@@ -2,6 +2,10 @@
 
 class FootprintsApi < Grape::API
   helpers AuthorizationHelper
+  before do
+    token = headers.fetch('auth_token', nil)
+    authorize_user(token) if token
+  end
 
   resource :footprints do
     route_param :id do
@@ -25,8 +29,6 @@ class FootprintsApi < Grape::API
         requires :id, type: Integer
       end
       get do
-        token = headers.fetch('auth_token', nil)
-        authorize_user(token) if token
         cars_carbon_footprint = Footprint.find(params[:id]).cars.sum(&:carbon_footprint)
         public_transports_carbon_footprint = Footprint.find(params[:id]).public_transports.sum(&:carbon_footprint)
         flights_carbon_footprint = Footprint.find(params[:id]).flights.sum(&:carbon_footprint)

@@ -5,6 +5,12 @@ class TransportationsApi < Grape::API
 
   helpers AuthorizationHelper, CarbonFootprintHelper
 
+  helpers AuthorizationHelper
+  before do
+    token = headers.fetch('auth_token', nil)
+    authorize_user(token) if token
+  end
+
   namespace 'transportations' do
     # POST /transportations
     desc 'Create transportations' do
@@ -25,23 +31,27 @@ class TransportationsApi < Grape::API
 
     params do
       optional :flights, type: Array[JSON] do
-        requires :from, type: String, desc: 'from', documentation: { param_type: 'body' }
-        requires :to, type: String, desc: 'to', documentation: { param_type: 'body' }
+        requires :from, type: String, desc: 'from', documentation: { param_type: 'body' }, default: 'Suceava'
+        requires :to, type: String, desc: 'to', documentation: { param_type: 'body' }, default: 'Kabul'
       end
       optional :public_transports, type: Array[JSON] do
-        requires :transport_type, type: Integer, desc: 'transport_type', documentation: { param_type: 'body' }
-        requires :total_km, type: Float, desc: 'km', documentation: { param_type: 'body' }
+        requires :transport_type, type: Integer, desc: 'transport_type', documentation: { param_type: 'body' },
+                                  values: [0, 1], default: 0
+        requires :total_km, type: Float, desc: 'km', documentation: { param_type: 'body' }, default: 0.0
       end
       optional :cars, type: Array[JSON] do
-        requires :fuel_type, type: Integer, desc: 'fuel_type', documentation: { param_type: 'body' }
-        requires :fuel_consumption, type: Float, desc: 'fuel_consumption', documentation: { param_type: 'body' }
-        requires :total_km, type: Float, desc: 'total_km', documentation: { param_type: 'body' }
+        requires :fuel_type, type: Integer, desc: 'fuel_type', documentation: { param_type: 'body' },
+                             values: [0, 1, 2, 3, 4], default: 0
+        requires :fuel_consumption, type: Float, desc: 'fuel_consumption', documentation: { param_type: 'body' },
+                                    default: 0.0
+        requires :total_km, type: Float, desc: 'total_km', documentation: { param_type: 'body' }, default: 0.0
       end
     end
     post do
       cars_params = params[:cars]
       flights_params = params[:flights]
       public_transports_params = params[:public_transports]
+
       token = headers.fetch('auth_token', nil)
       if token
         user = authorize_user(token)
@@ -49,7 +59,7 @@ class TransportationsApi < Grape::API
       else
         footprint = Footprint.new
       end
-      error!(footprint.errors, 400) unless footprint.present? && footprint.save
+      error!(footprint.errors, 400) unless footprint&.save
 
       flights_params&.each do |flight_param|
         carbon_footprint = FlightsDistance.where(
@@ -63,7 +73,7 @@ class TransportationsApi < Grape::API
           footprint_id: footprint.id,
           carbon_footprint:
         )
-        error!(flight.errors, 400) unless flight.present? && flight.save
+        error!(flight.errors, 400) unless flight&.save
       end
 
       cars_params&.each do |car_param|
@@ -77,7 +87,7 @@ class TransportationsApi < Grape::API
           footprint_id: footprint.id,
           carbon_footprint:
         )
-        error!(car.errors, 400) unless car.present? && car.save
+        error!(car.errors, 400) unless car&.save
       end
 
       public_transports_params&.each do |public_transport_param|
@@ -89,7 +99,7 @@ class TransportationsApi < Grape::API
           footprint_id: footprint.id,
           carbon_footprint:
         )
-        error!(public_transport.errors, 400) unless public_transport.present? && public_transport.save
+        error!(public_transport.errors, 400) unless public_transport&.save
       end
 
       transports = {

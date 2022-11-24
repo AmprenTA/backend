@@ -2,6 +2,10 @@
 
 class FoodsApi < Grape::API
   helpers AuthorizationHelper
+  before do
+    token = headers.fetch('auth_token', nil)
+    authorize_user(token) if token
+  end
 
   resource :foods do
     # POST /foods
@@ -21,24 +25,32 @@ class FoodsApi < Grape::API
       }
     }
     params do
-      requires :beef, type: Integer, desc: 'beef', documentation: { param_type: 'body' }
-      requires :lamb, type: Integer, desc: 'lamb', documentation: { param_type: 'body' }
-      requires :poultry, type: Integer, desc: 'poultry', documentation: { param_type: 'body' }
-      requires :pork, type: Integer, desc: 'pork', documentation: { param_type: 'body' }
-      requires :fish, type: Integer, desc: 'fish', documentation: { param_type: 'body' }
-      requires :milk_based, type: Integer, desc: 'milk_based', documentation: { param_type: 'body' }
-      requires :cheese, type: Integer, desc: 'cheese', documentation: { param_type: 'body' }
-      requires :eggs, type: Integer, desc: 'eggs', documentation: { param_type: 'body' }
-      requires :coffee, type: Integer, desc: 'coffee', documentation: { param_type: 'body' }
-      requires :vegetables, type: Integer, desc: 'vegetables', documentation: { param_type: 'body' }
-      requires :bread, type: Integer, desc: 'bread', documentation: { param_type: 'body' }
-      requires :footprint_id, type: Integer, desc: 'footprint_id', documentation: { param_type: 'body' }
+      requires :beef, type: Integer, desc: 'beef', documentation: { param_type: 'body' },
+                      values: [0, 1, 2, 3, 4], default: 0
+      requires :lamb, type: Integer, desc: 'lamb', documentation: { param_type: 'body' },
+                      values: [0, 1, 2, 3, 4], default: 0
+      requires :poultry, type: Integer, desc: 'poultry', documentation: { param_type: 'body' },
+                         values: [0, 1, 2, 3, 4], default: 0
+      requires :pork, type: Integer, desc: 'pork', documentation: { param_type: 'body' },
+                      values: [0, 1, 2, 3, 4], default: 0
+      requires :fish, type: Integer, desc: 'fish', documentation: { param_type: 'body' },
+                      values: [0, 1, 2, 3, 4], default: 0
+      requires :milk_based, type: Integer, desc: 'milk_based', documentation: { param_type: 'body' },
+                            values: [0, 1, 2, 3, 4], default: 0
+      requires :cheese, type: Integer, desc: 'cheese', documentation: { param_type: 'body' },
+                        values: [0, 1, 2, 3, 4], default: 0
+      requires :eggs, type: Integer, desc: 'eggs', documentation: { param_type: 'body' },
+                      values: [0, 1, 2, 3, 4], default: 0
+      requires :coffee, type: Integer, desc: 'coffee', documentation: { param_type: 'body' },
+                        values: [0, 1, 2, 3, 4], default: 0
+      requires :vegetables, type: Integer, desc: 'vegetables', documentation: { param_type: 'body' },
+                            values: [0, 1, 2, 3, 4], default: 0
+      requires :bread, type: Integer, desc: 'bread', documentation: { param_type: 'body' },
+                       values: [0, 1, 2, 3, 4], default: 0
+      requires :footprint_id, type: Integer, desc: 'footprint_id', documentation: { param_type: 'body' }, default: 1
     end
 
     post do
-      token = headers.fetch('auth_token', nil)
-      authorize_user(token) if token
-
       min_max_carbon_footprint = FoodFootprintCalculator.call(params)
       footprint_id = params[:footprint_id]
 
