@@ -7,7 +7,19 @@ class RootApi < Grape::API
     error!('Not Found', 404)
   end
 
-  # mount NotificationsApi
+  rescue_from Grape::Exceptions::ValidationErrors do |e|
+    rack_response({
+      status: e.status,
+      error_msg: e.message
+    }.to_json, 400)
+  end
+
+  mount FoodsApi
+  mount FootprintsApi
+  mount FlightsApi
+  mount HousesApi
+  mount TransportationsApi
+  mount UsersApi
 
   add_swagger_documentation(
     format: :json,

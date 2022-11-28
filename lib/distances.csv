@@ -1,0 +1,342 @@
+from,to,km
+Suceava,Dubai City,3563.681
+Suceava,Kabul,3820.445
+Suceava,Canberra,15194.42
+Suceava,Wellcamp,14859.434
+Suceava,Sarajevo,756.462
+Suceava,Brussels,1621.067
+Suceava,Brussels,1620.349
+Suceava,Sofia,601.506
+Suceava,Varna,509.068
+Suceava,Minsk,699.589
+Suceava,Kitchener,7615.179
+Suceava,Zurich,1334.378
+Suceava,Villavicencio,10417.401
+Suceava,Bremen,1377.921
+Suceava,Dortmund,1413.177
+Suceava,Duesseldorf,1467.076
+Suceava,Frankfurt-am-Main,1326.858
+Suceava,Hamburg,1326.476
+Suceava,Leipzig,1098.752
+Suceava,Munich,1085.579
+Suceava,Stuttgart,1273.625
+Suceava,Aarhus,1436.993
+Suceava,Karup,1513.733
+Suceava,Rønne,1147.512
+Suceava,Sønderborg,1402.774
+Suceava,Marigot,8572.871
+Suceava,Punta Cana,8844.99
+Suceava,Guayaquil,11406.914
+Suceava,Málaga,2799.955
+Suceava,Barcelona,2044.406
+Suceava,Bilbao,2320.483
+Suceava,Ibiza Town,2236.299
+Suceava,Palma De Mallorca,2096.38
+Suceava,Sta Cruz de la Palma,4327.22
+Suceava,Seville,2854.486
+Suceava,Tenerife Island,4235.091
+Suceava,Tenerife Island,4284.702
+Suceava,Valencia,2333.232
+Suceava,Zaragoza,2256.166
+Suceava,Paris,1759.914
+Suceava,La Rochelle,2089.757
+Suceava,Lyon,1632.478
+Suceava,Marseille,1707.458
+Suceava,Nice,1550.128
+Suceava,Cambridge,1929.818
+Suceava,Edinburgh,2220.305
+Suceava,Glasgow,2283.529
+Suceava,London,1933.299
+Suceava,London,1968.991
+Suceava,London,1964.447
+Suceava,Manchester,2105.802
+Suceava,Hong Kong,8027.056
+Suceava,Dubrovnik,852.961
+Suceava,Debrecen,356.417
+Suceava,Sármellék,704.065
+Suceava,Dublin,2370.876
+Suceava,Jaipur,4853.453
+Suceava,Baghdad,2196.459
+Suceava,Tabriz,1929.83
+Suceava,Reykjavik,3405.707
+Suceava,Bergamo,1288.568
+Suceava,Crotone,1222.701
+Suceava,Parma,1273.807
+Suceava,Venice,1096.593
+Suceava,Sukagawa,8546.988
+Suceava,Makinohara,8627.488
+Suceava,Osaka,8465.525
+Suceava,Rotterdam,1637.02
+Suceava,Łódź,672.133
+Suceava,Lublin,475.035
+Suceava,Funchal,3964.959
+Suceava,Lisbon,3013.417
+Suceava,Vila Baleira,3908.012
+Suceava,Istanbul,738.669
+Suceava,Taipei,8330.73
+Suceava,Bloomington,8331.592
+Suceava,Bozeman,8840.032
+Suceava,Columbus,8790.554
+Suceava,Denver,9156.453
+Suceava,Dallas-Fort Worth,9440.362
+Suceava,Panama City Beach,9029.331
+Suceava,El Paso,10008.767
+Suceava,Grand Canyon,9852.721
+Suceava,Peach Springs,9914.891
+Suceava,Great Falls,8679.542
+Suceava,New York,7451.251
+Iaşi,Dubai City,3453.018
+Iaşi,Kabul,3719.093
+Iaşi,Canberra,15093.785
+Iaşi,Wellcamp,14769.022
+Iaşi,Sarajevo,814.532
+Iaşi,Brussels,1730.611
+Iaşi,Brussels,1729.323
+Iaşi,Sofia,598.895
+Iaşi,Varna,439.601
+Iaşi,Minsk,746.842
+Iaşi,Kitchener,7723.946
+Iaşi,Zurich,1435.891
+Iaşi,Villavicencio,10521.596
+Iaşi,Bremen,1488.793
+Iaşi,Dortmund,1523.593
+Iaşi,Duesseldorf,1577.211
+Iaşi,Frankfurt-am-Main,1435.426
+Iaşi,Hamburg,1436.894
+Iaşi,Leipzig,1209.569
+Iaşi,Munich,1189.844
+Iaşi,Stuttgart,1379.057
+Iaşi,Aarhus,1543.191
+Iaşi,Karup,1620.942
+Iaşi,Rønne,1252.488
+Iaşi,Sønderborg,1511.759
+Iaşi,Marigot,8676.24
+Iaşi,Punta Cana,8952.547
+Iaşi,Guayaquil,11511.425
+Iaşi,Málaga,2879.604
+Iaşi,Barcelona,2128.553
+Iaşi,Bilbao,2415.727
+Iaşi,Ibiza Town,2313.227
+Iaşi,Palma De Mallorca,2173.308
+Iaşi,Sta Cruz de la Palma,4408.283
+Iaşi,Seville,2937.875
+Iaşi,Tenerife Island,4314.167
+Iaşi,Valencia,2415.033
+Iaşi,Zaragoza,2345.252
+Iaşi,Paris,1866.495
+Iaşi,La Rochelle,2191.096
+Iaşi,Lyon,1729.38
+Iaşi,Marseille,1795.569
+Iaşi,Nice,1636.648
+Iaşi,Cambridge,2040.283
+Iaşi,Edinburgh,2330.787
+Iaşi,Glasgow,2394.099
+Iaşi,London,2043.269
+Iaşi,London,2078.921
+Iaşi,London,2074.687
+Iaşi,Manchester,2216.658
+Iaşi,Hong Kong,7947.429
+Iaşi,Dubrovnik,898.218
+Iaşi,Debrecen,454.264
+Iaşi,Sármellék,796.518
+Iaşi,Dublin,2481.71
+Iaşi,Jaipur,4749.194
+Iaşi,Baghdad,2087.389
+Iaşi,Tabriz,1819.201
+Iaşi,Reykjavik,3510.16
+Iaşi,Bergamo,1381.808
+Iaşi,Crotone,1248.287
+Iaşi,Parma,1362.016
+Iaşi,Venice,1186.104
+Iaşi,Sukagawa,8512.8
+Iaşi,Shimada,8587.77
+Iaşi,Osaka,8422.639
+Iaşi,Rotterdam,1747.517
+Iaşi,Łódź,780.125
+Iaşi,Lublin,575.739
+Iaşi,Funchal,4051.463
+Iaşi,Lisbon,3103.498
+Iaşi,Vila Baleira,3994.691
+Iaşi,Istanbul,663.287
+Iaşi,Taipei,8261.109
+Iaşi,Bloomington,8439.1
+Iaşi,Bozeman,8935.051
+Iaşi,Columbus,8900.756
+Iaşi,Denver,9257.82
+Iaşi,Dallas-Fort Worth,9547.513
+Iaşi,Panama City Beach,9139.704
+Iaşi,El Paso,10112.24
+Iaşi,Grand Canyon,9951.298
+Iaşi,Peach Springs,10012.35
+Iaşi,Great Falls,8773.618
+Iaşi,New York,7561.679
+Cluj-Napoca,Dubai City,3682.05
+Cluj-Napoca,Kabul,4012.917
+Cluj-Napoca,Canberra,15387.086
+Cluj-Napoca,Wellcamp,15070.563
+Cluj-Napoca,Sarajevo,533.064
+Cluj-Napoca,Brussels,1474.508
+Cluj-Napoca,Brussels,1468.367
+Cluj-Napoca,Sofia,455.645
+Cluj-Napoca,Varna,512.24
+Cluj-Napoca,Minsk,847.831
+Cluj-Napoca,Kitchener,7528.937
+Cluj-Napoca,Zurich,1147.173
+Cluj-Napoca,Villavicencio,10234.366
+Cluj-Napoca,Bremen,1271.549
+Cluj-Napoca,Dortmund,1279.931
+Cluj-Napoca,Duesseldorf,1328.808
+Cluj-Napoca,Frankfurt-am-Main,1173.365
+Cluj-Napoca,Hamburg,1234.636
+Cluj-Napoca,Leipzig,979.762
+Cluj-Napoca,Munich,909.684
+Cluj-Napoca,Stuttgart,1101.652
+Cluj-Napoca,Aarhus,1388.268
+Cluj-Napoca,Karup,1456.319
+Cluj-Napoca,Rønne,1112.319
+Cluj-Napoca,Sønderborg,1330.348
+Cluj-Napoca,Marigot,8387.369
+Cluj-Napoca,Punta Cana,8676.769
+Cluj-Napoca,Guayaquil,11224.833
+Cluj-Napoca,Málaga,2579.087
+Cluj-Napoca,Barcelona,1826.742
+Cluj-Napoca,Bilbao,2117.012
+Cluj-Napoca,Ibiza Town,2013.89
+Cluj-Napoca,Palma De Mallorca,1873.947
+Cluj-Napoca,Sta Cruz de la Palma,4107.343
+Cluj-Napoca,Seville,2636.242
+Cluj-Napoca,Tenerife Island,4013.982
+Cluj-Napoca,Valencia,2113.739
+Cluj-Napoca,Zaragoza,2043.569
+Cluj-Napoca,Paris,1591.472
+Cluj-Napoca,La Rochelle,1900.431
+Cluj-Napoca,Lyon,1432.767
+Cluj-Napoca,Marseille,1493.777
+Cluj-Napoca,Nice,1334.709
+Cluj-Napoca,Cambridge,1794.227
+Cluj-Napoca,Edinburgh,2119.955
+Cluj-Napoca,Glasgow,2180.914
+Cluj-Napoca,London,1790.153
+Cluj-Napoca,London,1825.206
+Cluj-Napoca,London,1824.92
+Cluj-Napoca,Manchester,1980.121
+Cluj-Napoca,Hong Kong,8247.663
+Cluj-Napoca,Dubrovnik,636.11
+Cluj-Napoca,Debrecen,175.286
+Cluj-Napoca,Sármellék,497.956
+Cluj-Napoca,Dublin,2243.201
+Cluj-Napoca,Jaipur,5037.189
+Cluj-Napoca,Baghdad,2296.977
+Cluj-Napoca,Tabriz,2076.919
+Cluj-Napoca,Reykjavik,3356.482
+Cluj-Napoca,Bergamo,1082.34
+Cluj-Napoca,Crotone,1019.863
+Cluj-Napoca,Parma,1060.337
+Cluj-Napoca,Venice,884.887
+Cluj-Napoca,Sukagawa,8763.379
+Cluj-Napoca,Makinohara,8846.865
+Cluj-Napoca,Osaka,8686.379
+Cluj-Napoca,Rotterdam,1503.657
+Cluj-Napoca,Łódź,631.467
+Cluj-Napoca,Lublin,500.98
+Cluj-Napoca,Funchal,3749.511
+Cluj-Napoca,Lisbon,2801.975
+Cluj-Napoca,Vila Baleira,3692.736
+Cluj-Napoca,Istanbul,734.884
+Cluj-Napoca,Taipei,8555.233
+Cluj-Napoca,Bloomington,8255.675
+Cluj-Napoca,Bozeman,8828.422
+Cluj-Napoca,Columbus,8686.539
+Cluj-Napoca,Denver,9116.839
+Cluj-Napoca,Dallas-Fort Worth,9366.436
+Cluj-Napoca,Panama City Beach,8922.317
+Cluj-Napoca,El Paso,9957.609
+Cluj-Napoca,Grand Canyon,9825.551
+Cluj-Napoca,Peach Springs,9892.49
+Cluj-Napoca,Great Falls,8671.727
+Cluj-Napoca,New York,7344.11
+Bucharest,Dubai City,3397.192
+Bucharest,Kabul,3814.515
+Bucharest,Canberra,15173.278
+Bucharest,Wellcamp,14903.307
+Bucharest,Sarajevo,625.476
+Bucharest,Brussels,1756.797
+Bucharest,Brussels,1746.621
+Bucharest,Sofia,300.943
+Bucharest,Varna,203.339
+Bucharest,Minsk,1045.746
+Bucharest,Kitchener,7832.761
+Bucharest,Zurich,1391.302
+Bucharest,Villavicencio,10458.481
+Bucharest,Bremen,1574.832
+Bucharest,Dortmund,1572.058
+Bucharest,Duesseldorf,1617.693
+Bucharest,Frankfurt-am-Main,1453.4
+Bucharest,Hamburg,1541.589
+Bucharest,Leipzig,1280.684
+Bucharest,Munich,1173.482
+Bucharest,Stuttgart,1365.881
+Bucharest,Aarhus,1697.787
+Bucharest,Karup,1766.118
+Bucharest,Rønne,1420.094
+Bucharest,Sønderborg,1639.669
+Bucharest,Marigot,8609.1
+Bucharest,Punta Cana,8923.359
+Bucharest,Guayaquil,11449.577
+Bucharest,Málaga,2712.142
+Bucharest,Barcelona,1984.046
+Bucharest,Bilbao,2317.749
+Bucharest,Ibiza Town,2140.794
+Bucharest,Palma De Mallorca,2002.268
+Bucharest,Sta Cruz de la Palma,4239.484
+Bucharest,Seville,2783.572
+Bucharest,Tenerife Island,4138.807
+Bucharest,Valencia,2258.708
+Bucharest,Zaragoza,2218.683
+Bucharest,Paris,1853.393
+Bucharest,La Rochelle,2131.474
+Bucharest,Lyon,1649.805
+Bucharest,Marseille,1672.055
+Bucharest,Nice,1509.444
+Bucharest,Cambridge,2081.877
+Bucharest,Edinburgh,2422.662
+Bucharest,Glasgow,2482.773
+Bucharest,London,2072.837
+Bucharest,London,2107.249
+Bucharest,London,2109.9
+Bucharest,Manchester,2272.664
+Bucharest,Hong Kong,8131.7
+Bucharest,Dubrovnik,670.02
+Bucharest,Debrecen,474.9
+Bucharest,Sármellék,734.384
+Bucharest,Dublin,2533.816
+Bucharest,Jaipur,4820.024
+Bucharest,Baghdad,2004.883
+Bucharest,Tabriz,1822.423
+Bucharest,Reykjavik,3666.281
+Bucharest,Bergamo,1291.525
+Bucharest,Crotone,971.567
+Bucharest,Parma,1249.019
+Bucharest,Venice,1085.245
+Bucharest,Sukagawa,8793.582
+Bucharest,Makinohara,8860.835
+Bucharest,Osaka,8690.974
+Bucharest,Rotterdam,1794.192
+Bucharest,Łódź,937.931
+Bucharest,Lublin,783.949
+Bucharest,Funchal,3904.153
+Bucharest,Lisbon,2975.488
+Bucharest,Vila Baleira,3848.281
+Bucharest,Istanbul,425.792
+Bucharest,Taipei,8474.455
+Bucharest,Bloomington,8561.975
+Bucharest,Bozeman,9135.241
+Bucharest,Columbus,8983.603
+Bucharest,Denver,9426.611
+Bucharest,Dallas-Fort Worth,9672.995
+Bucharest,Panama City Beach,9217.947
+Bucharest,El Paso,10267.144
+Bucharest,Grand Canyon,10134.651
+Bucharest,Peach Springs,10201.081
+Bucharest,Great Falls,8977.765
+Bucharest,New York,7640.243
