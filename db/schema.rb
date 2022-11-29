@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2022_11_23_182002) do
     t.integer "fuel_type", null: false
     t.integer "fuel_consumption", null: false
     t.float "total_km", null: false
-    t.float "carbon_footprint", null: false
+    t.float "carbon_footprint", default: 0.0, null: false
     t.bigint "footprint_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 2022_11_23_182002) do
   create_table "flights", force: :cascade do |t|
     t.string "from", null: false
     t.string "to", null: false
-    t.float "carbon_footprint", null: false
+    t.float "carbon_footprint", default: 0.0, null: false
     t.bigint "footprint_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -47,8 +47,19 @@ ActiveRecord::Schema.define(version: 2022_11_23_182002) do
 
   create_table "foods", force: :cascade do |t|
     t.bigint "footprint_id"
-    t.float "min_carbon_footprint", null: false
-    t.float "max_carbon_footprint", null: false
+    t.float "min_carbon_footprint", default: 0.0, null: false
+    t.float "max_carbon_footprint", default: 0.0, null: false
+    t.integer "beef", default: 0, null: false
+    t.integer "lamb", default: 0, null: false
+    t.integer "poultry", default: 0, null: false
+    t.integer "pork", default: 0, null: false
+    t.integer "fish", default: 0, null: false
+    t.integer "milk_based", default: 0, null: false
+    t.integer "cheese", default: 0, null: false
+    t.integer "eggs", default: 0, null: false
+    t.integer "coffee", default: 0, null: false
+    t.integer "vegetables", default: 0, null: false
+    t.integer "bread", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["footprint_id"], name: "index_foods_on_footprint_id"
@@ -65,7 +76,7 @@ ActiveRecord::Schema.define(version: 2022_11_23_182002) do
     t.float "electricity", null: false
     t.float "natural_gas", null: false
     t.float "wood", null: false
-    t.float "carbon_footprint", null: false
+    t.float "carbon_footprint", default: 0.0, null: false
     t.bigint "footprint_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -75,7 +86,7 @@ ActiveRecord::Schema.define(version: 2022_11_23_182002) do
   create_table "public_transports", force: :cascade do |t|
     t.integer "transport_type", null: false
     t.float "total_km", null: false
-    t.float "carbon_footprint", null: false
+    t.float "carbon_footprint", default: 0.0, null: false
     t.bigint "footprint_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

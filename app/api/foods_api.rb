@@ -26,27 +26,27 @@ class FoodsApi < Grape::API
     }
     params do
       requires :beef, type: Integer, desc: 'beef', documentation: { param_type: 'body' },
-                      values: [0, 1, 2, 3, 4], default: 0
+                      values: Food.frequencies.values, default:  Food.frequencies['never']
       requires :lamb, type: Integer, desc: 'lamb', documentation: { param_type: 'body' },
-                      values: [0, 1, 2, 3, 4], default: 0
+                      values: Food.frequencies.values, default:  Food.frequencies['never']
       requires :poultry, type: Integer, desc: 'poultry', documentation: { param_type: 'body' },
-                         values: [0, 1, 2, 3, 4], default: 0
+                         values: Food.frequencies.values, default:  Food.frequencies['never']
       requires :pork, type: Integer, desc: 'pork', documentation: { param_type: 'body' },
-                      values: [0, 1, 2, 3, 4], default: 0
+                      values: Food.frequencies.values, default:  Food.frequencies['never']
       requires :fish, type: Integer, desc: 'fish', documentation: { param_type: 'body' },
-                      values: [0, 1, 2, 3, 4], default: 0
+                      values: Food.frequencies.values, default:  Food.frequencies['never']
       requires :milk_based, type: Integer, desc: 'milk_based', documentation: { param_type: 'body' },
-                            values: [0, 1, 2, 3, 4], default: 0
+                            values: Food.frequencies.values, default:  Food.frequencies['never']
       requires :cheese, type: Integer, desc: 'cheese', documentation: { param_type: 'body' },
-                        values: [0, 1, 2, 3, 4], default: 0
+                        values: Food.frequencies.values, default:  Food.frequencies['never']
       requires :eggs, type: Integer, desc: 'eggs', documentation: { param_type: 'body' },
-                      values: [0, 1, 2, 3, 4], default: 0
+                      values: Food.frequencies.values, default:  Food.frequencies['never']
       requires :coffee, type: Integer, desc: 'coffee', documentation: { param_type: 'body' },
-                        values: [0, 1, 2, 3, 4], default: 0
+                        values: Food.frequencies.values, default:  Food.frequencies['never']
       requires :vegetables, type: Integer, desc: 'vegetables', documentation: { param_type: 'body' },
-                            values: [0, 1, 2, 3, 4], default: 0
+                            values: Food.frequencies.values, default:  Food.frequencies['never']
       requires :bread, type: Integer, desc: 'bread', documentation: { param_type: 'body' },
-                       values: [0, 1, 2, 3, 4], default: 0
+                       values: Food.frequencies.values, default:  Food.frequencies['never']
       requires :footprint_id, type: Integer, desc: 'footprint_id', documentation: { param_type: 'body' }
     end
 
@@ -57,6 +57,17 @@ class FoodsApi < Grape::API
       food = Food.new(
         min_carbon_footprint: min_max_carbon_footprint[0],
         max_carbon_footprint: min_max_carbon_footprint[1],
+        beef: params[:beef],
+        lamb: params[:lamb],
+        poultry: params[:poultry],
+        pork: params[:pork],
+        fish: params[:fish],
+        milk_based: params[:milk_based],
+        cheese: params[:cheese],
+        eggs: params[:eggs],
+        coffee: params[:coffee],
+        vegetables: params[:vegetables],
+        bread: params[:vegetables],
         footprint_id:
       )
       error!(food.errors, 400) unless food&.save
