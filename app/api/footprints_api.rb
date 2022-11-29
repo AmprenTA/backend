@@ -13,8 +13,8 @@ class FootprintsApi < Grape::API
       desc 'Get footprint' do
         tags %w[footprints]
         http_codes [
-          { code: 200, message: 'Footprint' },
-          { code: 404, message: 'Footprint not found' }
+          { code: 200, message: 'Footprint info.' },
+          { code: 404, message: 'Footprint not found!' }
         ]
       end
       desc 'Headers', {
@@ -25,9 +25,7 @@ class FootprintsApi < Grape::API
           }
         }
       }
-      params do
-        requires :id, type: Integer
-      end
+
       get do
         cars_carbon_footprint = Footprint.find(params[:id]).cars.sum(&:carbon_footprint)
         public_transports_carbon_footprint = Footprint.find(params[:id]).public_transports.sum(&:carbon_footprint)

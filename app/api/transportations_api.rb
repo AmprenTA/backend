@@ -16,7 +16,7 @@ class TransportationsApi < Grape::API
     desc 'Create transportations' do
       tags %w[transportations]
       http_codes [
-        { code: 201, message: 'Create transportations' },
+        { code: 201, message: 'Transportation created.' },
         { code: 400, message: 'Bad request!' }
       ]
     end

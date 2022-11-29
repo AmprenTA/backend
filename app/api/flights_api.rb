@@ -8,7 +8,7 @@ class FlightsApi < Grape::API
       desc 'Get available airports' do
         tags %w[flights]
         http_codes [
-          { code: 200, message: 'Airports list' }
+          { code: 200, message: 'Airports list.' }
         ]
       end
       get do

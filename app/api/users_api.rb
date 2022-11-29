@@ -7,7 +7,7 @@ class UsersApi < Grape::API
       desc 'Get user' do
         tags %w[users]
         http_codes [
-          { code: 200, model: Entities::User, message: 'User info' },
+          { code: 200, model: Entities::User, message: 'User info.' },
           { code: 404, message: 'User not found!' }
         ]
       end
@@ -24,7 +24,8 @@ class UsersApi < Grape::API
       desc 'User Sign Up' do
         tags %w[users]
         http_codes [
-          { code: 201, model: Entities::User, message: 'User created' }
+          { code: 201, model: Entities::User, message: 'User created' },
+          { code: 400, message: 'Bad request!' }
         ]
       end
       params do

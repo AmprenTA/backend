@@ -12,7 +12,7 @@ class FoodsApi < Grape::API
     desc 'Create foods' do
       tags %w[foods]
       http_codes [
-        { code: 201, message: 'Foods created!' },
+        { code: 201, message: 'Foods created.' },
         { code: 400, message: 'Bad request!' }
       ]
     end
@@ -47,7 +47,7 @@ class FoodsApi < Grape::API
                             values: [0, 1, 2, 3, 4], default: 0
       requires :bread, type: Integer, desc: 'bread', documentation: { param_type: 'body' },
                        values: [0, 1, 2, 3, 4], default: 0
-      requires :footprint_id, type: Integer, desc: 'footprint_id', documentation: { param_type: 'body' }, default: 1
+      requires :footprint_id, type: Integer, desc: 'footprint_id', documentation: { param_type: 'body' }
     end
 
     post do
