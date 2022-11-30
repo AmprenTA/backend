@@ -26,6 +26,15 @@ ActiveRecord::Schema.define(version: 2022_11_23_182002) do
     t.index ["footprint_id"], name: "index_cars_on_footprint_id"
   end
 
+  create_table "flight_distances", force: :cascade do |t|
+    t.string "from", default: "", null: false
+    t.string "to", default: "", null: false
+    t.string "km", default: "", null: false
+    t.float "carbon_footprint", default: 0.0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "flights", force: :cascade do |t|
     t.string "from", null: false
     t.string "to", null: false
@@ -34,15 +43,6 @@ ActiveRecord::Schema.define(version: 2022_11_23_182002) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["footprint_id"], name: "index_flights_on_footprint_id"
-  end
-
-  create_table "flights_distances", force: :cascade do |t|
-    t.string "from", default: "", null: false
-    t.string "to", default: "", null: false
-    t.string "km", default: "", null: false
-    t.float "carbon_footprint", default: 0.0, null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "foods", force: :cascade do |t|

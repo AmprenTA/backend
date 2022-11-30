@@ -12,8 +12,8 @@ class FlightsApi < Grape::API
         ]
       end
       get do
-        airports = FlightsDistance.all.map { |flight| flight['to'] }.uniq |
-                   FlightsDistance.all.map { |flight| flight['from'] }.uniq
+        airports = FlightDistance.all.map { |flight| flight['to'] }.uniq |
+                   FlightDistance.all.map { |flight| flight['from'] }.uniq
         airports_list = ((0...airports.size).zip airports).map { |list| { 'id' => list[0], 'name' => list[1] } }
         present airports_list
       end

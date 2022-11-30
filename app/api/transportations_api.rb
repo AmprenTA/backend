@@ -31,17 +31,18 @@ class TransportationsApi < Grape::API
 
     params do
       optional :flights, type: Array[JSON] do
-        requires :from, type: String, desc: 'from', documentation: { param_type: 'body' }, default: 'Suceava'
-        requires :to, type: String, desc: 'to', documentation: { param_type: 'body' }, default: 'Kabul'
+        requires :from, type: String, desc: 'from', documentation: { param_type: 'body' }
+        requires :to, type: String, desc: 'to', documentation: { param_type: 'body' }
       end
       optional :public_transports, type: Array[JSON] do
         requires :transport_type, type: Integer, desc: 'transport_type', documentation: { param_type: 'body' },
-                                  values: [0, 1], default: 0
+                                  values: PublicTransport.transport_types.values,
+                                  default: PublicTransport.transport_types[:train]
         requires :total_km, type: Float, desc: 'km', documentation: { param_type: 'body' }, default: 0.0
       end
       optional :cars, type: Array[JSON] do
         requires :fuel_type, type: Integer, desc: 'fuel_type', documentation: { param_type: 'body' },
-                             values: [0, 1, 2, 3, 4], default: 0
+                             values: Car.fuel_types.values, default: Car.fuel_types[:diesel]
         requires :fuel_consumption, type: Float, desc: 'fuel_consumption', documentation: { param_type: 'body' },
                                     default: 0.0
         requires :total_km, type: Float, desc: 'total_km', documentation: { param_type: 'body' }, default: 0.0
@@ -62,7 +63,7 @@ class TransportationsApi < Grape::API
       error!(footprint.errors, 400) unless footprint&.save
 
       flights_params&.each do |flight_param|
-        carbon_footprint = FlightsDistance.where(
+        carbon_footprint = FlightDistance.where(
           from: [flight_param[:from], flight_param[:to]],
           to: [flight_param[:from], flight_param[:to]]
         ).first.carbon_footprint
