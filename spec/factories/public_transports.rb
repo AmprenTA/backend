@@ -2,9 +2,9 @@
 
 FactoryBot.define do
   factory :public_transport do
-    total_km { Faker::Number.between(from: 0.0, to: 2000.0).round(1) }
-    transport_type { %w[bus train].sample }
-    carbon_footprint { Faker::Number.between(from: 0.0, to: 10_000.0).round(1) }
+    total_km { Faker::Number.between(from: 0.0, to: 500.0).round(1) }
+    transport_type { PublicTransport.transport_types.values.sample }
+    carbon_footprint { PublicTransportFootprintCalculator.call(total_km, transport_type) }
 
     association :footprint
   end

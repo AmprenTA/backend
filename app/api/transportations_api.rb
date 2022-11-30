@@ -78,9 +78,11 @@ class TransportationsApi < Grape::API
       end
 
       cars_params&.each do |car_param|
-        carbon_footprint = calculate_car_footprint(car_param[:total_km],
-                                                   car_param[:fuel_consumption],
-                                                   car_param[:fuel_type])
+        carbon_footprint = CarFootprintCalculator.call(
+          car_param[:total_km],
+          car_param[:fuel_consumption],
+          car_param[:fuel_type]
+        )
         car = Car.new(
           fuel_type: car_param[:fuel_type],
           fuel_consumption: car_param[:fuel_consumption],
@@ -92,8 +94,11 @@ class TransportationsApi < Grape::API
       end
 
       public_transports_params&.each do |public_transport_param|
-        carbon_footprint = calculate_pub_trans_footprint(public_transport_param[:total_km],
-                                                         public_transport_param[:transport_type])
+        carbon_footprint = PublicTransportFootprintCalculator.call(
+          public_transport_param[:total_km],
+          public_transport_param[:transport_type]
+        )
+
         public_transport = PublicTransport.new(
           transport_type: public_transport_param[:transport_type],
           total_km: public_transport_param[:total_km],

@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class FlightFootprintCalculator
-  KG_OF_CO2_PER_KM = 0.156
+  SMALL_DISTANCE_KG_OF_CO2_PER_KM = 0.3
+  LARGER_DISTANCE_KG_OF_CO2_PER_KM = 0.156
 
   def initialize(distance)
     @distance = distance
@@ -12,14 +13,16 @@ class FlightFootprintCalculator
   end
 
   def call
-    calculate_carbon_footprint
+    carbon_footprint
   end
 
   private
 
   attr_reader :distance
 
-  def calculate_carbon_footprint
-    distance * KG_OF_CO2_PER_KM
+  def carbon_footprint
+    distance * SMALL_DISTANCE_KG_OF_CO2_PER_KM if distance <= 1_000
+
+    distance * LARGER_DISTANCE_KG_OF_CO2_PER_KM
   end
 end
