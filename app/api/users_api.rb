@@ -43,7 +43,7 @@ class UsersApi < Grape::API
         )
         if user.present? && user.valid_password?(params[:password]) && user.save
           auth_token = JWT.encode({ user_data: user.id }, Rails.application.secret_key_base, 'HS256')
-          { auth_token: }
+          { first_name: user.first_name, last_name: user.last_name, auth_token: }
         else
           error!(user.errors, 400)
         end
@@ -69,8 +69,10 @@ class UsersApi < Grape::API
           error_msg = 'Invalid Credentials'
           error!({ 'error_msg' => error_msg }, 401)
         end
+
         auth_token = JWT.encode({ user_data: user.id }, Rails.application.secret_key_base, 'HS256')
-        { auth_token: }
+
+        { first_name: user.first_name, last_name: user.last_name, auth_token: }
       end
     end
   end
