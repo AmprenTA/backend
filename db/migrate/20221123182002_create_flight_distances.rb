@@ -1,6 +1,6 @@
-class CreateFlightsDistances < ActiveRecord::Migration[6.1]
+class CreateFlightDistances < ActiveRecord::Migration[6.1]
   def change
-    create_table :flights_distances do |t|
+    create_table :flight_distances do |t|
       t.string :from, null: false, default: ""
       t.string :to, null: false, default: ""
       t.string :km, null: false, default: ""

@@ -4,7 +4,7 @@ class FoodFootprintCalculator
   KG = 1000.0 # 1000 g = 1 kg
 
   def initialize(food)
-    @food = food
+    @food = food.with_indifferent_access
   end
 
   def self.call(food)

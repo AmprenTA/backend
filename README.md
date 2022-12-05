@@ -7,6 +7,7 @@ rvm use ruby-3.1.2@amprenta [--create]
 bundle [install]
 rails db:create
 rails db:migrate
+rails db:seed [total_footprints=<IntegerValue>]
 ```
 
 ## Local testing

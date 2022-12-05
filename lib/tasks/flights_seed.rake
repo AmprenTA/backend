@@ -13,7 +13,7 @@ namespace :flights do
       flight_parameters = row.to_hash
       flight_carbon_footprint = FlightFootprintCalculator.call(flight_parameters['km'].to_f)
       flight_parameters['carbon_footprint'] = flight_carbon_footprint
-      FlightsDistance.find_or_create_by(flight_parameters)
+      FlightDistance.find_or_create_by(flight_parameters)
     end
     puts 'Seeding complete!'
   end

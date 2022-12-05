@@ -12,7 +12,7 @@ class HousesApi < Grape::API
     desc 'Create house' do
       tags %w[houses]
       http_codes [
-        { code: 201, model: Entities::House, message: 'House created' },
+        { code: 201, model: Entities::House, message: 'House created.' },
         { code: 400, model: Entities::House, message: 'Bad request!' }
       ]
     end
@@ -28,7 +28,7 @@ class HousesApi < Grape::API
       requires :electricity, type: Float, desc: 'electricity', documentation: { param_type: 'body' }, default: 0.0
       requires :natural_gas, type: Float, desc: 'natural_gas', documentation: { param_type: 'body' }, default: 0.0
       requires :wood, type: Float, desc: 'wood', documentation: { param_type: 'body' }, default: 0.0
-      requires :footprint_id, type: Integer, desc: 'footprint_id', documentation: { param_type: 'body' }, default: 1
+      requires :footprint_id, type: Integer, desc: 'footprint_id', documentation: { param_type: 'body' }
     end
     post do
       carbon_footprint = HouseholdFootprintCalculator.new(params[:electricity],
@@ -43,7 +43,9 @@ class HousesApi < Grape::API
         footprint_id:
       )
       error!(house.errors, 400) unless house&.save
+
       household_carbon_footprint = { carbon_footprint:, footprint_id: }
+
       present household_carbon_footprint
     end
   end

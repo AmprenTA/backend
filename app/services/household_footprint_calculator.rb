@@ -11,6 +11,10 @@ class HouseholdFootprintCalculator
     @wood = wood
   end
 
+  def self.call(electricity, natural_gas, wood)
+    new(electricity, natural_gas, wood).call
+  end
+
   def call
     calculate_footprint
   end
