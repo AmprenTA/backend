@@ -18,6 +18,7 @@ class RootApi < Grape::API
   mount FootprintsApi
   mount FlightsApi
   mount HousesApi
+  mount LocationsApi
   mount TransportationsApi
   mount UsersApi
 

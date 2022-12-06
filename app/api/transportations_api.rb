@@ -30,6 +30,7 @@ class TransportationsApi < Grape::API
     }
 
     params do
+      requires :location, type: String, desc: 'Location', documentation: { param_type: 'body' }
       optional :flights, type: Array[JSON] do
         requires :from, type: String, desc: 'from', documentation: { param_type: 'body' }
         requires :to, type: String, desc: 'to', documentation: { param_type: 'body' }
@@ -52,13 +53,14 @@ class TransportationsApi < Grape::API
       cars_params = params[:cars]
       flights_params = params[:flights]
       public_transports_params = params[:public_transports]
+      location = params[:location]
 
       token = headers.fetch('auth_token', nil)
       if token
         user = authorize_user(token)
-        footprint = Footprint.new(user_id: user.id)
+        footprint = Footprint.new(user_id: user.id, location:)
       else
-        footprint = Footprint.new
+        footprint = Footprint.new(location:)
       end
       error!(footprint.errors, 400) unless footprint&.save
 

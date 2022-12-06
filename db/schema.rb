@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_23_182002) do
+ActiveRecord::Schema.define(version: 2022_12_06_135327) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 2022_11_23_182002) do
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "location"
     t.index ["user_id"], name: "index_footprints_on_user_id"
   end
 
@@ -81,6 +82,13 @@ ActiveRecord::Schema.define(version: 2022_11_23_182002) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["footprint_id"], name: "index_houses_on_footprint_id"
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string "town"
+    t.string "county"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "public_transports", force: :cascade do |t|
