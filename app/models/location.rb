@@ -8,48 +8,48 @@ class Location < ApplicationRecord
   # rubocop:disable Metrics/MethodLength
   def self.counties
     %w[
-      Vrancea
-      Satu Mare
-      Bistriţa-Năsăud
-      Tulcea
-      Dâmboviţa
-      Dolj
-      Caraş-Severin
-      Bihor
-      Prahova
-      Harghita
-      Suceava
-      Mureş
-      Călăraşi
-      Olt
-      Botoşani
-      Buzău
-      Sibiu
-      Gorj
-      Bacău
+      Alba
       Arad
       Argeş
-      Neamţ
-      Cluj
-      Vâlcea
-      Constanţa
-      Teleorman
-      Ilfov
-      Ialomiţa
-      Hunedoara
-      Bucureşti
-      Sălaj
-      Giurgiu
-      Mehedinţi
-      Covasna
-      Iaşi
-      Maramureş
-      Braşov
+      Bacău
+      Bihor
+      Bistriţa-Năsăud
+      Botoşani
       Brăila
-      Vaslui
-      Alba
-      Timiş
+      Braşov
+      Bucureşti
+      Buzău
+      Călăraşi
+      Caraş-Severin
+      Cluj
+      Constanţa
+      Covasna
+      Dâmboviţa
+      Dolj
       Galaţi
+      Giurgiu
+      Gorj
+      Harghita
+      Hunedoara
+      Ialomiţa
+      Iaşi
+      Ilfov
+      Maramureş
+      Mehedinţi
+      Mureş
+      Neamţ
+      Olt
+      Prahova
+      Sălaj
+      Satu Mare
+      Sibiu
+      Suceava
+      Teleorman
+      Timiş
+      Tulcea
+      Vâlcea
+      Vaslui
+      Vrancea
     ]
   end
   # rubocop:enable Metrics/MethodLength
