@@ -1,7 +1,45 @@
 # frozen_string_literal: true
 
 class UsersApi < Grape::API
+  format :json
+
+  helpers AuthorizationHelper
+
   resource :users do
+    # GET /users/availability
+    namespace 'availability' do
+      desc 'Check footprint computation availability' do
+        tags %w[users]
+        http_codes [
+          { code: 200, message: 'Check availability to compute.' },
+        ]
+      end
+      desc 'Headers', {
+        headers: {
+          'auth_token' => {
+            description: 'Validates your identity',
+            optional: true
+          }
+        }
+      }
+      get do
+        token = headers.fetch('Auth-Token', nil)
+
+        user = authorize_user(token) if token
+        last_footprint_date = Footprint.where(user:).sort_by(&:created_at).last&.created_at&.to_date
+
+        if last_footprint_date
+          if last_footprint_date + 1.month >= Date.current
+            false
+          else
+            true
+          end
+        else
+          true
+        end
+      end
+    end
+
     # GET /users/:id
     route_param :id do
       desc 'Get user' do

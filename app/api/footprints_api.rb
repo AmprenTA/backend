@@ -3,7 +3,7 @@
 class FootprintsApi < Grape::API
   helpers AuthorizationHelper
   before do
-    token = headers.fetch('auth_token', nil)
+    token = headers.fetch('Auth-Token', nil)
     authorize_user(token) if token
   end
 

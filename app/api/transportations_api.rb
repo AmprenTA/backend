@@ -5,9 +5,8 @@ class TransportationsApi < Grape::API
 
   helpers AuthorizationHelper, CarbonFootprintHelper
 
-  helpers AuthorizationHelper
   before do
-    token = headers.fetch('auth_token', nil)
+    token = headers.fetch('Auth-Token', nil)
     authorize_user(token) if token
   end
 
@@ -55,7 +54,7 @@ class TransportationsApi < Grape::API
       public_transports_params = params[:public_transports]
       location = params[:location]
 
-      token = headers.fetch('auth_token', nil)
+      token = headers.fetch('Auth-Token', nil)
       if token
         user = authorize_user(token)
         footprint = Footprint.new(user_id: user.id, location:)

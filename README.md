@@ -8,7 +8,7 @@ bundle [install]
 rails db:create
 rails db:migrate
 rails db:seed [total_footprints=<IntegerValue>]
-rails rails locations:seed
+rails locations:seed
 ```
 
 ## Local testing
