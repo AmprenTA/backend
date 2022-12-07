@@ -2,8 +2,7 @@ FROM ruby:3.1.2
 
 WORKDIR /backend
 
-COPY Gemfile /backend/Gemfile
-COPY Gemfile.lock /backend/Gemfile.lock
+COPY . .
 
 RUN ["/bin/bash", "-c", "bundle config --global silence_root_warning 1"]
 RUN ["/bin/bash", "-c", "bundle"]
