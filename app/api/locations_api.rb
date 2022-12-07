@@ -2,6 +2,7 @@
 
 class LocationsApi < Grape::API
   format :json
+
   resource :locations do
     # GET /locations/counties
     desc 'Get available counties' do
