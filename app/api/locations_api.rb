@@ -12,7 +12,8 @@ class LocationsApi < Grape::API
       ]
     end
     get 'counties' do
-      counties_list = Location.counties.map { |county| { 'id' => county, 'name' => county } }
+      counties = Location.counties
+      counties_list = ((0...counties.size).zip counties).map { |county| { id: county[0], name: county[1] } }
 
       present counties_list
     end
