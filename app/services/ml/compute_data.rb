@@ -74,7 +74,8 @@ module Ml
         current_sum = compute_value_for(footprint)
         cumulative_sum += current_sum
         avg_sum = cumulative_sum / (index + 1)
-        means_data << [avg_sum, index]
+        # means_data << [avg_sum, index]
+        means_data << avg_sum
       end
 
       means_data
