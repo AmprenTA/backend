@@ -20,6 +20,20 @@ class StatisticsApi < Grape::API
     end
 
     # TODO: Footprint(transportations, house, food) for specific town, month,
+    desc 'Average Footprints' do
+      tags %w[statistics]
+      http_codes [
+        { code: 200, message: 'Average Footprints data.' }
+      ]
+    end
+    params do
+      optional :location, type: String, desc: 'Average Footprints', documentation: { param_type: 'query' }
+    end
+    get 'average_footprints' do
+      avg_data = Statistics::AverageFootprint.call(params[:location])
+
+      present avg_data
+    end
     # TODO: Footprint for user per months
   end
 end
