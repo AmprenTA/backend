@@ -11,7 +11,7 @@ class UsersApi < Grape::API
       desc 'Check footprint computation availability' do
         tags %w[users]
         http_codes [
-          { code: 200, message: 'Check availability to compute.' },
+          { code: 200, message: 'Check availability to compute.' }
         ]
       end
       desc 'Headers', {
@@ -26,14 +26,10 @@ class UsersApi < Grape::API
         token = headers.fetch('Auth-Token', nil)
 
         user = authorize_user(token) if token
-        last_footprint_date = Footprint.where(user:).sort_by(&:created_at).last&.created_at&.to_date
+        last_footprint_date = Footprint.where(user:).max_by(&:created_at)&.created_at&.to_date
 
         if last_footprint_date
-          if last_footprint_date + 1.month >= Date.current
-            false
-          else
-            true
-          end
+          last_footprint_date + 1.month < Date.current
         else
           true
         end
