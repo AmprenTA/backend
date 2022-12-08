@@ -24,6 +24,7 @@ class UsersApi < Grape::API
       }
       get do
         token = headers.fetch('Auth-Token', nil)
+        return true unless token
 
         user = authorize_user(token) if token
         last_footprint_date = Footprint.where(user:).max_by(&:created_at)&.created_at&.to_date
