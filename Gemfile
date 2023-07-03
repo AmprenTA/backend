@@ -34,6 +34,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'bullet'
   gem 'listen', '~> 3.3'
   gem 'rack-mini-profiler', '~> 2.0'
   gem 'spring'
@@ -49,3 +50,5 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+
+gem "dockerfile-rails", ">= 1.5", :group => :development
