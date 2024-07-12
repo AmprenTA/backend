@@ -4,8 +4,9 @@ require 'active_support/core_ext/integer/time'
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
+  config.web_console.permissions = '10.0.0.0/8'
   config.allowed_cors_origins = [
-    %r{\Ahttp(s?)://(.*?)\.herokuapp\.com\z},
+    %r{\Ahttp(s?)://(.*?)\.assistcloud\.services\z},
     %r{\Ahttp(s?)://localhost(:.+)?\z},
     %r{\Ahttp(s?)://127.0.0.1(:.+)?\z},
     %r{\Ahttp(s?)://0.0.0.0(:.+)?\z},
@@ -78,7 +79,7 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
-  config.hosts << /[a-z0-9\-.]+\.ngrok\.io/
+  config.hosts << /[a-z0-9\-.]+\.assistcloud\.services/
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
 end

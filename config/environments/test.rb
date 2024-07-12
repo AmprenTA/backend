@@ -11,7 +11,7 @@ Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   config.allowed_cors_origins = [
-    %r{\Ahttp(s?)://(.*?)\.herokuapp\.com\z},
+    %r{\Ahttp(s?)://(.*?)\.assistcloud\.services\z},
     %r{\Ahttp(s?)://localhost(:.+)?\z},
     %r{\Ahttp(s?)://127.0.0.1(:.+)?\z},
     %r{\Ahttp(s?)://0.0.0.0(:.+)?\z}
