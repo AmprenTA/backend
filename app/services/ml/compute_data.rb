@@ -105,79 +105,79 @@ module Ml
     end
 
     def electricity(footprint)
-      footprint.house.electricity
+      footprint.house&.electricity&.to_f
     end
 
     def natural_gas(footprint)
-      footprint.house.natural_gas
+      footprint.house&.natural_gas&.to_f
     end
 
     def wood(footprint)
-      footprint.house.wood
+      footprint.house&.wood&.to_f
     end
 
     def beef(footprint)
-      beef = footprint.food.beef
+      beef = footprint.food&.beef&.to_f
       min, max = frequency(beef).map { |n| n * (FoodConstants::BEEF * 100 / kg) }
       (min + max) / 2.0
     end
 
     def lamb(footprint)
-      lamb = footprint.food.lamb
+      lamb = footprint.food&.lamb&.to_f
       min, max = frequency(lamb).map { |n| n * (FoodConstants::LAMB * 100 / kg) }
       (min + max) / 2.0
     end
 
     def poultry(footprint)
-      poultry = footprint.food.poultry
+      poultry = footprint.food&.poultry&.to_f
       min, max = frequency(poultry).map { |n| n * (FoodConstants::POULTRY * 100 / kg) }
       (min + max) / 2.0
     end
 
     def pork(footprint)
-      pork = footprint.food.pork
+      pork = footprint.food&.pork&.to_f
       min, max = frequency(pork).map { |n| n * (FoodConstants::PORK * 100 / kg) }
       (min + max) / 2.0
     end
 
     def fish(footprint)
-      fish = footprint.food.fish
+      fish = footprint.food&.fish&.to_f
       min, max = frequency(fish).map { |n| n * (FoodConstants::FISH * 140 / kg) }
       (min + max) / 2.0
     end
 
     def milk_based(footprint)
-      milk_based = footprint.food.milk_based
+      milk_based = footprint.food&.milk_based&.to_f
       min, max = frequency(milk_based).map { |n| n * (FoodConstants::MILK_BASED * 200 / kg * 1.03) }
       (min + max) / 2.0
     end
 
     def cheese(footprint)
-      cheese = footprint.food.cheese
+      cheese = footprint.food&.cheese&.to_f
       min, max = frequency(cheese).map { |n| n * (FoodConstants::CHEESE * 30 / kg) }
       (min + max) / 2.0
     end
 
     def eggs(footprint)
-      eggs = footprint.food.eggs
+      eggs = footprint.food&.eggs&.to_f
       min, max = frequency(eggs).map { |n| n * (FoodConstants::EGGS * 120 / kg) }
       (min + max) / 2.0
     end
 
     def coffee(footprint)
-      coffee = footprint.food.coffee
+      coffee = footprint.food&.coffee&.to_f
       min, max = frequency(coffee).map { |n| n * (FoodConstants::COFFEE * 180 / kg) }
       (min + max) / 2.0
     end
 
     def vegetables(footprint)
-      vegetables = footprint.food.vegetables
+      vegetables = footprint.food&.vegetables&.to_f
       min, max = frequency(vegetables).map { |n| n * (FoodConstants::VEGETABLES * 80 / kg) }
       (min + max) / 2.0
     end
 
     def bread(footprint)
-      bread = footprint.food.bread
+      bread = footprint.food&.bread&.to_f
       min, max = frequency(bread).map { |n| n * (FoodConstants::BREAD * 36 / kg) }
       (min + max) / 2.0
     end
