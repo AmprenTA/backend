@@ -36,7 +36,7 @@ module Statistics
       return 0 if total.zero?
 
       footprint_sum = footprints.sum do |footprint|
-        footprint.cars.sum { |car| car.carbon_footprint.to_f }
+        footprint.cars.sum { |car| car&.carbon_footprint.to_f }
       end
       footprint_sum / total
     end
@@ -46,7 +46,7 @@ module Statistics
       return 0 if total.zero?
 
       footprint_sum = footprints.sum do |footprint|
-        footprint.flights.sum { |flight| flight.carbon_footprint.to_f }
+        footprint.flights.sum { |flight| flight&.carbon_footprint.to_f }
       end
       footprint_sum / total
     end
@@ -56,7 +56,7 @@ module Statistics
       return 0 if total.zero?
 
       footprint_sum = footprints.sum do |footprint|
-        footprint.public_transports.sum { |pt| pt.carbon_footprint.to_f }
+        footprint.public_transports.sum { |pt| pt&.carbon_footprint.to_f }
       end
       footprint_sum / total
     end
