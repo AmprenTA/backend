@@ -3,7 +3,7 @@
 Steps to follow in order to setup the app locally:
 
 ```sh
-rvm use ruby-3.1.4@amprenta [--create]
+rvm use ruby-3.1.6@amprenta [--create]
 bundle [install]
 rails db:create
 rails db:migrate
